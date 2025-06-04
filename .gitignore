@@ -1,0 +1,85 @@
+# access
+.access.php
+*.log
+.htaccess
+.htpasswd
+
+# Binaries
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.war
+*.ear
+*.sar
+*.class
+
+# temp files
+.temp
+
+# Maven
+target/
+
+# IntelliJ project files
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# vscode
+.vscode
+
+# eclipse project file
+.settings/
+.classpath
+.project
+
+# NetBeans specific
+nbproject/*
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# node.js
+node_modules
+frontend/node_modules
+
+# zend studio for eclipse project files
+.buildpath
+.settings
+
+# windows thumbnail cache
+Thumbs.db
+
+# composer vendor dir
+/vendor
+
+# composer itself is not needed
+composer.phar
+
+# Mac DS_Store Files
+.DS_Store
+
+# phpunit itself is not needed
+phpunit.phar
+
+# local phpunit config
+/phpunit.xml
+tests/_output/*
+tests/_support/_generated
+
+# vagrant folder
+/.vagrant
+
+# runtime
+/runtime
+
+# Env
+.env
