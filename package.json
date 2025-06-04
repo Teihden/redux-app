@@ -1,5 +1,5 @@
 {
-  "name": "redux-essentials-example",
+  "name": "redux-app",
   "version": "2.0.0",
   "private": true,
   "dependencies": {
