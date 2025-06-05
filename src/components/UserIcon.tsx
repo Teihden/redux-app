@@ -5,7 +5,6 @@ interface UserIconProps {
 }
 
 // SVG source: https://flowbite.com/icons/
-
 export function UserIcon({ size }: UserIconProps) {
   return (
     <svg
