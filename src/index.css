@@ -1,5 +1,5 @@
 :root {
-  --redux-color: #764abc;
+  --redux-color: #4a8dbc;
 }
 
 body {
@@ -62,7 +62,7 @@ nav a:active {
   padding: 0.1rem 1rem;
   color: white !important;
   border-radius: 4px;
-  background: #481499;
+  background: #1976d2;
 }
 
 @media (max-width: 599px) {
@@ -77,7 +77,7 @@ nav a:first-of-type {
 
 nav a:hover {
   color: white;
-  background: #926bcf;
+  background: #1963d2;
 }
 
 .navContent {
