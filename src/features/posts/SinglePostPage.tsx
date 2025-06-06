@@ -19,7 +19,7 @@ export const SinglePostPage = () => {
     );
   }
 
-  const canEdit = currentUsername === post.user;
+  const isCanEdit = currentUsername === post.user;
 
   return (
     <section>
@@ -31,7 +31,7 @@ export const SinglePostPage = () => {
         </div>
         <p className="post-content">{post.content}</p>
         <ReactionButtons post={post} />
-        {canEdit && (
+        {isCanEdit && (
           <Link to={`/editPost/${post.id}`} className="button">
             Edit Post
           </Link>

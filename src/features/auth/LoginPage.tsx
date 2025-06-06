@@ -42,7 +42,7 @@ export const LoginPage = () => {
           name="username"
           required
         >
-          <option value=""></option>
+          <option value="" />
           {usersOptions}
         </select>
         <button>Log In</button>
