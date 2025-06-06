@@ -16,7 +16,8 @@ interface EditPostFormElements extends HTMLFormElement {
 
 export const EditPostForm = () => {
   const { postId } = useParams();
-  const post = useAppSelector(state => selectPostById(state, postId!));
+  const post = useAppSelector((state) => selectPostById(state, postId!));
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -46,20 +47,9 @@ export const EditPostForm = () => {
       <h2>Edit Post</h2>
       <form onSubmit={onSavePostClicked}>
         <label htmlFor="postTitle">Post Title:</label>
-        <input
-          type="text"
-          id="postTitle"
-          name="postTitle"
-          defaultValue={post.title}
-          required
-        />
+        <input type="text" id="postTitle" name="postTitle" defaultValue={post.title} required />
         <label htmlFor="postContent">Content:</label>
-        <textarea
-          id="postContent"
-          name="postContent"
-          defaultValue={post.content}
-          required
-        />
+        <textarea id="postContent" name="postContent" defaultValue={post.content} required />
         <button>Save Post</button>
       </form>
     </section>
