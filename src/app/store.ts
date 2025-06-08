@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import authSlice from "@/features/auth/authSlice";
 import postsSlice from "@/features/posts/postsSlice";
 import usersSlice from "@/features/users/usersSlice";
@@ -14,3 +14,4 @@ export const store = configureStore({
 export type AppStore = typeof store
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
+export type AppThunk = ThunkAction<void, RootState, unknown, Action>

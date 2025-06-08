@@ -1,4 +1,4 @@
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
 import { setupWorker } from "msw/browser";
 import { factory, manyOf, oneOf, primaryKey } from "@mswjs/data";
 import { nanoid } from "@reduxjs/toolkit";
@@ -13,10 +13,6 @@ const RECENT_NOTIFICATIONS_DAYS = 7;
 
 // Add an extra delay to all endpoints, so loading spinners show up.
 const ARTIFICIAL_DELAY_MS = 2000;
-
-function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 /* RNG setup */
 
@@ -171,8 +167,7 @@ export const handlers = [
     data.date = new Date().toISOString();
     const userId = data.user as string;
 
-    const user = db.user.findFirst({ where: { id: { equals: userId } } });
-    data.user = user;
+    data.user = db.user.findFirst({ where: { id: { equals: userId } } });
     data.reactions = db.reaction.create();
 
     const post = db.post.create(data);
@@ -321,7 +316,7 @@ function generateRandomNotifications(
 
   // Create N random notifications. We won't bother saving these
   // in the DB - just generate a new batch and return them.
-  const notifications = [ ...Array(numNotifications) ].map(() => {
+  return [ ...Array(numNotifications) ].map(() => {
     const allUsers = db.user.getAll();
     const otherUsers = allUsers.filter((user) => user.id !== currentUser);
 
@@ -334,6 +329,4 @@ function generateRandomNotifications(
       user: user.id,
     };
   });
-
-  return notifications;
 }
