@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import { useAppSelector } from "./app/hooks";
 import { Navbar } from "./components/Navbar";
 import { SinglePostPage } from "@/features/posts/SinglePostPage";
@@ -8,11 +8,13 @@ import { selectCurrentUsername } from "./features/auth/authSlice";
 import React from "react";
 import { LoginPage } from "@/features/auth/LoginPage";
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }): React.ReactNode | null => {
   const username = useAppSelector(selectCurrentUsername);
+  const navigate = useNavigate();
 
   if (!username) {
-    return <Navigate to="/" replace />;
+    navigate("/", { replace: true })
+    return null;
   }
 
   return children;
