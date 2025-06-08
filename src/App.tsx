@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }): React.Reac
   const navigate = useNavigate();
 
   if (!username) {
-    navigate("/", { replace: true })
+    navigate("/", { replace: true });
     return null;
   }
 
