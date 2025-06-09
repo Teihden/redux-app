@@ -2,13 +2,17 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import authSlice from "@/features/auth/authSlice";
 import postsSlice from "@/features/posts/postsSlice";
 import usersSlice from "@/features/users/usersSlice";
+import notificationsSlice from "@/features/notifications/notificationsSlice";
+import { listenerMiddleware } from "@/app/listenerMiddleware";
 
 export const store = configureStore({
   reducer: {
     [authSlice.reducerPath]: authSlice.reducer,
     [postsSlice.reducerPath]: postsSlice.reducer,
     [usersSlice.reducerPath]: usersSlice.reducer,
+    [notificationsSlice.reducerPath]: notificationsSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 });
 
 export type AppStore = typeof store

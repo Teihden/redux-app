@@ -10,7 +10,8 @@ the [official Redux Toolkit + Vite template](https://github.com/reduxjs/redux-te
 
 This project is currently set up to use [Yarn 4](https://yarnpkg.com/getting-started/usage) as the package manager.
 
-If you prefer to use another package manager, such as NPM, PNPM, or Bun, delete the `"packageManager"` section from `package.json` and the
+If you prefer to use another package manager, such as NPM, PNPM, or Bun, delete the `"packageManager"` section from
+`package.json` and the
 `.yarnrc.yml` and `yarn.lock` files, then install dependencies with your preferred package manager.
 
 ## Available Scripts

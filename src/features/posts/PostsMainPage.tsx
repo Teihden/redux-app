@@ -4,8 +4,8 @@ import { AddPostForm } from "./AddPostForm";
 export function PostsMainPage() {
   return (
     <div>
-      <AddPostForm />
-      <PostsList />
+      <AddPostForm/>
+      <PostsList/>
     </div>
   );
 }

@@ -16,7 +16,9 @@ interface AddPostFormElements extends HTMLFormElement {
 
 export const AddPostForm = () => {
   const [ addRequestStatus, setAddRequestStatus ] = useState<"idle" | "pending">("idle");
+
   const dispatch = useAppDispatch();
+
   const userId = useAppSelector(selectCurrentUsername)!;
 
   const handleSubmit = async (e: React.FormEvent<AddPostFormElements>) => {
@@ -45,10 +47,10 @@ export const AddPostForm = () => {
       <h2>Add a New Post</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="postTitle">Post Title:</label>
-        <input type="text" id="postTitle" defaultValue="" required />
+        <input type="text" id="postTitle" defaultValue="" required/>
         <label htmlFor="postContent">Content:</label>
-        <textarea id="postContent" name="postContent" defaultValue="" required />
-        <button>Save Post</button>
+        <textarea id="postContent" name="postContent" defaultValue="" required/>
+        <button disabled={addRequestStatus === "pending"}>Save Post</button>
       </form>
     </section>
   );
