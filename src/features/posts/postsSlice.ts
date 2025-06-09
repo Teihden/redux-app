@@ -24,8 +24,8 @@ export interface Post {
   reactions: Reactions;
 }
 
-type PostUpdate = Pick<Post, "id" | "title" | "content">
-type NewPost = Pick<Post, "title" | "content" | "user">
+export type PostUpdate = Pick<Post, "id" | "title" | "content">
+export type NewPost = Pick<Post, "title" | "content" | "user">
 
 export const fetchPosts = createAppAsyncThunk(
   "posts/fetchPosts",
@@ -54,6 +54,7 @@ interface PostsState extends EntityState<Post, string> {
 }
 
 const postsAdapter = createEntityAdapter<Post>({
+  // Sort in descending date order
   sortComparer: (a, b) => b.date.localeCompare(a.date),
 });
 
@@ -81,6 +82,7 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, (state) => {
+        // Clear out the list of posts whenever the user logs out
         return initialState;
       })
       .addCase(fetchPosts.pending, (state, action) => {
@@ -88,6 +90,7 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = "succeeded";
+        // Save the fetched posts into state
         postsAdapter.setAll(state, action.payload);
       })
       .addCase(fetchPosts.rejected, (state, action) => {

@@ -5,6 +5,7 @@ import { useGetPostQuery } from "@/features/api/apiSlice";
 import { selectCurrentUsername } from "@/features/auth/authSlice";
 import { PostAuthor } from "./PostAuthor";
 import { ReactionButtons } from "./ReactionButtons";
+import { Spinner } from "@/components/Spinner";
 
 export const SinglePostPage = () => {
   const { postId } = useParams();
