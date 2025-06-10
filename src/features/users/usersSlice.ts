@@ -37,4 +37,7 @@ export const selectCurrentUser = (state: RootState) => {
   return selectUserById(state, currentUsername);
 };
 
-export const { selectAll: selectAllUsers, selectById: selectUserById } = usersAdapter.getSelectors(selectUsersData);
+export const {
+  selectAll: selectAllUsers,
+  selectById: selectUserById,
+} = usersAdapter.getSelectors(selectUsersData);

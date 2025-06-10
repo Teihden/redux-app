@@ -18,6 +18,7 @@ export const ReactionButtons = ({ post }: ReactionButtonsProps) => {
 
   const reactionButtons = Object.entries(reactionEmoji).map(([ stringName, emoji ]) => {
     const reaction = stringName as ReactionName;
+
     return (
       <button
         key={reaction}
