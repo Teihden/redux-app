@@ -3,19 +3,21 @@ import classnames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { TimeAgo } from "@/components/TimeAgo";
 import { PostAuthor } from "@/features/posts/PostAuthor";
-import { allNotificationsRead, selectAllNotifications } from "./notificationsSlice";
+import { allNotificationsRead, selectMetadataEntities, useGetNotificationsQuery } from "./notificationsSlice";
 
 export const NotificationsList = () => {
   const dispatch = useAppDispatch();
-  const notifications = useAppSelector(selectAllNotifications);
+  const { data: notifications = [] } = useGetNotificationsQuery();
+  const notificationsMetadata = useAppSelector(selectMetadataEntities);
 
   useEffect(() => {
     dispatch(allNotificationsRead());
   });
 
   const renderedNotifications = notifications.map((notification) => {
+    const metadata = notificationsMetadata[notification.id];
     const notificationClassname = classnames("notification", {
-      new: notification.isNew,
+      new: metadata.isNew,
     });
 
     return (

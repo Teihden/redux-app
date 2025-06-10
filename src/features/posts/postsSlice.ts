@@ -3,6 +3,7 @@ import { client } from "@/api/client";
 import type { RootState } from "@/app/store";
 import { AppStartListening } from "@/app/listenerMiddleware";
 import { createAppAsyncThunk } from "@/app/withTypes";
+import apiSlice from '@/features/api/apiSlice'
 import { logout } from "@/features/auth/authSlice";
 
 export interface Reactions {
@@ -54,7 +55,6 @@ interface PostsState extends EntityState<Post, string> {
 }
 
 const postsAdapter = createEntityAdapter<Post>({
-  // Sort in descending date order
   sortComparer: (a, b) => b.date.localeCompare(a.date),
 });
 
@@ -82,7 +82,6 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logout.fulfilled, (state) => {
-        // Clear out the list of posts whenever the user logs out
         return initialState;
       })
       .addCase(fetchPosts.pending, (state, action) => {
@@ -90,7 +89,6 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = "succeeded";
-        // Save the fetched posts into state
         postsAdapter.setAll(state, action.payload);
       })
       .addCase(fetchPosts.rejected, (state, action) => {
@@ -119,7 +117,7 @@ export const selectPostsError = (state: RootState) => state.posts.error;
 
 export const addPostsListeners = (startAppListening: AppStartListening) => {
   startAppListening({
-    actionCreator: addNewPost.fulfilled,
+    matcher: apiSlice.endpoints.addNewPost.matchFulfilled,
     effect: async (action, listenerApi) => {
       const { toast } = await import("react-tiny-toast");
 
